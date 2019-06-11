@@ -11,7 +11,7 @@ class InstaAccountBot
     private $password;
 
     private $headers = array();
-    private $user_agent = "Mozilla/5.0 (Linux; Android 6.0.1; SM-G935T Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/51.0.2704.81 Mobile Safari/537.36";
+    private $user_agent = "Mozilla/5.0 (Linux; Android 7.1.1; ONEPLUS A5000 Build/NMF26X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Mobile Safari/537.36";
 
     private function randomPassword() {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
@@ -158,8 +158,9 @@ class InstaAccountBot
                 return $result.PHP_EOL;
             }
         }else{
+            echo curl_error($ch).PHP_EOL;
             curl_close ($ch);
-            return 'Proxy is dead! & curl_exec bool(false)'.PHP_EOL;
+            return '';
         }
     }
 
@@ -253,8 +254,9 @@ class InstaAccountBot
 
             return true;
         }else{
+            echo curl_error($ch).PHP_EOL;
             curl_close ($ch);
-            return 'Proxy is dead! & curl_exec bool(false)'.PHP_EOL;
+            return '';
         }
     }
 }
