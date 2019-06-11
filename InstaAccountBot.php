@@ -24,8 +24,18 @@ class InstaAccountBot
         return implode($pass);
     }
 
-    private function randstring($length){
-        return substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+    private function generateClientId(){
+        $strUrl = 'https://www.instagram.com/web/__mid/';
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$strUrl);
+        curl_setopt($ch, CURLOPT_USERAGENT, $this->user_agent);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        $result = curl_exec($ch);
+        curl_close ($ch);
+        return $result;
     }
 
     private function usr2id($username)
@@ -103,7 +113,7 @@ class InstaAccountBot
         $arrPostData['password'] = $this->password;
         $arrPostData['username'] = $this->username;
         $arrPostData['first_name'] = $this->name;
-        $arrPostData['client_id'] = $this->randstring(28);
+        $arrPostData['client_id'] = $this->generateClientId();
         $arrPostData['seamless_login_enabled'] = '1';
         $arrPostData['gdpr_s'] = '%5B0%2C2%2C0%2Cnull%5D';
         $arrPostData['tos_version'] = 'eu';
