@@ -4,6 +4,8 @@
 
 ### USE SOCKS5 PROXY ONLY !!!
 
+### ![example](/examples/assets/account_created.png)
+
 ## Configuration
 Add proxies inside <strong>`proxy.txt`</strong> each proxy in one line.
 
