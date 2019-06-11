@@ -200,8 +200,8 @@ class InstaAccountBot
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_ENCODING, '');
         curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-        curl_setopt ($ch, CURLOPT_COOKIEJAR, 'cookies/'.$username.'.txt');
-        curl_setopt ($ch, CURLOPT_COOKIEFILE, 'cookies/'.$username.'.txt');
+        curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookies/'.$username.'.txt');
+        curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookies/'.$username.'.txt');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($arrPostData));
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -229,8 +229,8 @@ class InstaAccountBot
                 curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_ENCODING, '');
                 curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-                curl_setopt ($ch, CURLOPT_COOKIEJAR, 'cookies/'.$username.'.txt');
-                curl_setopt ($ch, CURLOPT_COOKIEFILE, 'cookies/'.$username.'.txt');
+                curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookies/'.$username.'.txt');
+                curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookies/'.$username.'.txt');
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
                 curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
