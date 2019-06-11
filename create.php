@@ -11,7 +11,7 @@ if (!empty(file(__DIR__ . '/proxy.txt'))) {
     }
 } else {
     for ($n = 1; $n <= 5; $n++) {
-        $i->createAccount();
+        echo $i->createAccount();
         sleep(3);
     }
 }
