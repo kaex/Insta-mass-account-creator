@@ -123,23 +123,23 @@ class InstaAccountBot
 
             if($json['account_created'] !== false AND $json['status'] !== 'fail')
             {
-                $data =
+                $data_array =
                     [
                         'created' => true,
                         'username' => $this->username,
                         'password' => $this->password,
                         'email' => $this->email,
                         'name' => $this->name,
+                        'registered_proxy' => $proxy
                     ];
 
-                $json_data = json_encode($data);
-
-                $fp = fopen('accounts.txt', 'a');
-                fwrite($fp, $json_data.PHP_EOL);
-                fclose($fp);
+                $json = file_get_contents('accounts.json');
+                $data = json_decode($json);
+                $data[] = $data_array;
+                file_put_contents('accounts.json', json_encode($data));
 
                 curl_close ($ch);
-                return $json_data.PHP_EOL;
+                return json_encode($data).PHP_EOL;
             }else {
                 curl_close ($ch);
                 return $result.PHP_EOL;
