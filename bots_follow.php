@@ -15,5 +15,5 @@ $follow =
 
 foreach ($accounts as $account)
 {
-    var_dump($i->loginAndFollow($account['username'] , $account['password'] , $account['registered_proxy'] , $follow));
+    echo $i->loginAndFollow($account['username'] , $account['password'] , $account['registered_proxy'] , $follow);
 }
