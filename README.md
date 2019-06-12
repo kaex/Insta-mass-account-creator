@@ -14,6 +14,9 @@ start <strong>`php create.php`</strong>
 All username are stored in accounts.json
 
 ## Auto-follow
+
+### ![example](/examples/assets/followed_users.png)
+
 After you opened enough account's you can open `bots_follow.php` and edit array `$follow` and run `php bots_follow.php` and the accounts will follow the list.
 
 ### Features
