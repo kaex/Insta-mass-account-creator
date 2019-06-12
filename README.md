@@ -1,5 +1,5 @@
 # Insta Mass Account Creator
-![Version](https://img.shields.io/badge/version-1.1-brightgreen.svg?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.3-brightgreen.svg?style=flat-square)
 ![Version](https://img.shields.io/badge/release-stable-green.svg?style=flat-square)
 
 ### USE SOCKS5 PROXY ONLY !!!
