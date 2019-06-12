@@ -24,6 +24,20 @@ class InstaAccountBot
         return implode($pass);
     }
 
+    private function getToken($username)
+    {
+        $cookie = file_get_contents('cookies/'.$username.'.txt');
+        $csrftoken = '/csrftoken\s(.*)\s/mU';
+        preg_match_all($csrftoken, $cookie, $csrftoken, PREG_SET_ORDER, 0);
+        $csrftoken = $csrftoken[0][1];
+
+        if($csrftoken != ""){
+            return $csrftoken;
+        }else{
+            exit;
+        }
+    }
+
     private function generateClientId(){
         $strUrl = 'https://www.instagram.com/web/__mid/';
 
@@ -133,7 +147,7 @@ class InstaAccountBot
         }
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_ENCODING, '');
-        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($arrPostData));
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -210,7 +224,7 @@ class InstaAccountBot
         }
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_ENCODING, '');
-        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
         curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookies/'.$username.'.txt');
         curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookies/'.$username.'.txt');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
@@ -219,13 +233,27 @@ class InstaAccountBot
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         $result = curl_exec($ch);
 
-        if(curl_errno($ch) !== 28 AND $result !== false)
+        if(curl_errno($ch) !== 28 AND $result !== false AND !empty($result))
         {
             foreach ($accounts as $account)
             {
                 $user_id = $this->usr2id($account);
-                $strUrl = 'https://www.instagram.com/web/friendships/'.$user_id.'/follow/';
                 unset($ch);
+
+                $headers = $this->headers;
+                $headers[] = 'accept: */*';
+                $headers[] = 'content-length: 0';
+                $headers[] = 'accept-encoding: gzip, deflate, br';
+                $headers[] = 'accept-language: en-GB,en-US;q=0.9,en;q=0.8';
+                $headers[] = 'content-type: application/x-www-form-urlencoded';
+                $headers[] = 'origin: https://www.instagram.com';
+                $headers[] = 'referer: https://www.instagram.com/';
+                $headers[] = 'x-csrftoken: '.$this->getToken($username);
+                $headers[] = 'x-ig-app-id: 936619743392459';
+                $headers[] = 'x-instagram-ajax: 1';
+                $headers[] = 'x-requested-with: XMLHttpRequest';
+
+                $strUrl = 'https://www.instagram.com/web/friendships/'.$user_id.'/follow/';
 
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL,$strUrl);
@@ -239,7 +267,7 @@ class InstaAccountBot
                 }
                 curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_ENCODING, '');
-                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
                 curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookies/'.$username.'.txt');
                 curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookies/'.$username.'.txt');
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
@@ -248,21 +276,27 @@ class InstaAccountBot
                 $result = curl_exec($ch);
                 $json = json_decode($result , true);
 
-                if($json['status'] !== 'fail' AND !empty($result))
+                if($json['status'] !== 'fail' AND !empty($result) AND $result !== false)
                 {
                     $data =
                         [
                             'status' => true,
                             'username_followed' => $account,
                         ];
-                    return json_encode($data);
+                    echo json_encode($data);
                 }else {
-                        return $result;
+                        echo $result;
                     }
             }
             curl_close ($ch);
 
-            return true;
+            $json_data =
+                [
+                    'status' => true,
+                    'message' => 'followed all users'
+                ];
+
+            return json_encode($json_data);
         }else{
             echo curl_error($ch).PHP_EOL;
             curl_close ($ch);
