@@ -182,9 +182,9 @@ class InstaAccountBot
                 return $result.PHP_EOL;
             }
         }else{
-            echo curl_error($ch).PHP_EOL;
+            $error = curl_error($ch).PHP_EOL;
             curl_close ($ch);
-            return '';
+            return $error;
         }
     }
 
@@ -298,9 +298,9 @@ class InstaAccountBot
 
             return json_encode($json_data);
         }else{
-            echo curl_error($ch).PHP_EOL;
+            $error = curl_error($ch).PHP_EOL;
             curl_close ($ch);
-            return '';
+            return $error;
         }
     }
 }
