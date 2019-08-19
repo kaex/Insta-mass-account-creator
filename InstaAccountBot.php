@@ -140,7 +140,7 @@ class InstaAccountBot
         curl_setopt($ch, CURLOPT_USERAGENT, $this->user_agent);
         curl_setopt($ch, CURLOPT_COOKIE, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        if(!empty(file('proxy.txt')) OR $proxy !== null)
+        if($proxy !== null)
         {
             curl_setopt($ch, CURLOPT_PROXY , $proxy);
             curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);

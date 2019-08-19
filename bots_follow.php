@@ -6,7 +6,7 @@ $i = new InstaAccountBot();
 
 $accounts = json_decode(file_get_contents('accounts.json'), true);
 
-if (file_exists(__DIR__ . '/follow.txt')) {
+if (file_exists(__DIR__ . '/follow.txt') && !empty(file(__DIR__ . '/follow.txt'))) {
     $follow = file(__DIR__ . '/follow.txt');
 }else{
     $json_data =
