@@ -7,7 +7,7 @@
 ### ![example](/examples/assets/account_created.png)
 
 ## Configuration
-Add proxies inside <strong>`proxy.txt`</strong> each proxy in one line.
+Add proxies inside <strong>`proxy.txt`</strong> (**one proxy per line**).
 
 start <strong>`php create.php`</strong>
 
@@ -17,7 +17,7 @@ All username are stored in accounts.json
 
 ### ![example](/examples/assets/followed_users.png)
 
-After you opened enough account's you can open `bots_follow.php` and edit array `$follow` and run `php bots_follow.php` and the accounts will follow the list.
+After you opened enough account's you can add accounts to follow inside `follow.txt` (**one account per line**) and run `php bots_follow.php` and the accounts will follow the list.
 
 ### Features
 This script creates account with random name and username gets by the web. All user created are older 18 years

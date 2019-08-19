@@ -4,7 +4,7 @@ include 'InstaAccountBot.php';
 use xosad\InstaAccountBot;
 
 $i = new InstaAccountBot();
-if (!empty(file(__DIR__ . '/proxy.txt'))) {
+if (file_exists(__DIR__ . '/proxy.txt')) {
     foreach (file(__DIR__ . '/proxy.txt') as $proxy) {
         echo $i->createAccount(trim($proxy));
         sleep(3);

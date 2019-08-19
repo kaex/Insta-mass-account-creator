@@ -6,12 +6,17 @@ $i = new InstaAccountBot();
 
 $accounts = json_decode(file_get_contents('accounts.json'), true);
 
-$follow =
-    [
-        'username',
-        'username2',
-        'username3',
-    ];
+if (file_exists(__DIR__ . '/follow.txt')) {
+    $follow = file(__DIR__ . '/follow.txt');
+}else{
+    $json_data =
+        [
+            'status' => false,
+            'message' => 'follow.txt is missing'
+        ];
+    echo json_encode($json_data);
+}
+$follow = array_map('trim', $follow);
 
 foreach ($accounts as $account)
 {
