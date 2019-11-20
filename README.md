@@ -1,26 +1,53 @@
 # Insta Mass Account Creator
-![Version](https://img.shields.io/badge/version-1.3-brightgreen.svg?style=flat-square)
+![Version](https://img.shields.io/badge/version-0.1-brightgreen.svg?style=flat-square)
 ![Version](https://img.shields.io/badge/release-stable-green.svg?style=flat-square)
 
 ### USE SOCKS5 PROXY ONLY !!!
 
-### ![example](/examples/assets/account_created.png)
+### Use it only in CLI for better experience
 
-## Configuration
-Add proxies inside <strong>`proxy.txt`</strong> (**one proxy per line**).
+### ![example-1](/examples/assets/account_created.png)
 
-start <strong>`php create.php`</strong>
+# Configuration
 
-All username are stored in accounts.json
+### Arguments
 
-## Auto-follow
+| Argument             | Usage                                             |
+| :------------------- | :-------------------------------------------------|
+| -l                   | The limit of how many accounts should be created  |
+| -p                   | Path to proxy file.                               |
 
-### ![example](/examples/assets/followed_users.png)
+Example: `php start.php -l 5 -p proxies.txt`
 
-After you opened enough account's you can add accounts to follow inside `follow.txt` (**one account per line**) and run `php bots_follow.php` and the accounts will follow the list.
+# Run
+
+### Account creation
+
+Run `php start.php` + `args`
+
+### ![example-2](/examples/assets/choose_feature.png)
+
+We'll choose the first, so input 1 and hit enter.
+
+It will start generationg the accounts.
+
+
+### Mass Follow
+
+Run `php start.php` + `args`
+
+### ![example-3](/examples/assets/choose_feature.png)
+
+We'll choose the second, so input 2 and hit enter.
+
+### ![example-4](/examples/assets/follow_accounts.png)
+
+Write the usernames you want the bot to folllow and hit enter.
 
 ### Features
-This script creates account with random name and username gets by the web. All user created are older 18 years
+1) This script creates account with random name and username gets by the web. All user created are older 18 years
+2) This script helps you follow multiple accounts with the account's you've created
+
 
 ### Important
 -  The new fake Instagram account with an unverified phone number after ~ 1-24 hours could not do any requests. All requests will be redirected to the page           
