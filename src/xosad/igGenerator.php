@@ -240,7 +240,7 @@ class igGenerator extends Common
 				$accounts   = json_decode($json, true);
 				$accounts[] = $newAccount;
 
-				file_put_contents('accounts.json', json_encode($accounts));
+				file_put_contents(ROOTDIR . '/accounts.json', json_encode($accounts));
 
 				echo json_encode($newAccount) . PHP_EOL;
 			}
