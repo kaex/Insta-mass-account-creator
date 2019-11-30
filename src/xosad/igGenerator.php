@@ -56,15 +56,22 @@ class igGenerator extends Common
 	/**
 	 * Generates a new instagram _mid token.
 	 *
+	 * @param null $proxy
+	 *
 	 * @return bool
 	 */
-	private function generateClientId(): bool
+	private function generateClientId($proxy = null): bool
 	{
 		$strUrl = 'https://www.instagram.com/web/__mid/';
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $strUrl);
 		curl_setopt($ch, CURLOPT_USERAGENT, $this->user_agent);
+		if ($proxy)
+		{
+			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+			curl_setopt($ch, CURLOPT_PROXY, $proxy);
+		}
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$result = curl_exec($ch);
 		curl_close($ch);
@@ -77,15 +84,22 @@ class igGenerator extends Common
 	/**
 	 * Generates a new instagram CSRF token.
 	 *
+	 * @param null $proxy
+	 *
 	 * @return bool
 	 */
-	private function generateCsrfToken(): bool
+	private function generateCsrfToken($proxy = null): bool
 	{
 		$strUrl = 'https://www.instagram.com/data/shared_data/?__a=1';
 
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $strUrl);
 		curl_setopt($ch, CURLOPT_USERAGENT, $this->user_agent);
+		if ($proxy)
+		{
+			curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+			curl_setopt($ch, CURLOPT_PROXY, $proxy);
+		}
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		$result = curl_exec($ch);
 		curl_close($ch);
@@ -130,12 +144,7 @@ class igGenerator extends Common
 	{
 		for ($x = 1; $x <= (int)$this->limit; $x++)
 		{
-			$this->generateClientId();
-			$this->generateCsrfToken();
 			$this->getAccountData();
-
-			$this->headers [] = 'X-CSRFToken: ' . $this->csrftoken;
-			$this->headers [] = 'Cookie: ig_cb=1; mid=' . $this->mid . '; csrftoken=' . $this->csrftoken . '; ig_did=22CCC17C-43CD-4F30-BF06-40126A80EF94; rur=FTW';
 
 			if ($this->proxy_file)
 			{
@@ -144,6 +153,12 @@ class igGenerator extends Common
 
 				if ($line)
 				{
+					$this->generateClientId($line);
+					$this->generateCsrfToken($line);
+
+					$this->headers [] = 'X-CSRFToken: ' . $this->csrftoken;
+					$this->headers [] = 'Cookie: ig_cb=1; mid=' . $this->mid . '; csrftoken=' . $this->csrftoken . '; ig_did=22CCC17C-43CD-4F30-BF06-40126A80EF94; rur=FTW';
+
 					self::construct([
 						CURLOPT_USERAGENT      => $this->user_agent,
 						CURLOPT_HTTPHEADER     => $this->headers,
@@ -155,6 +170,12 @@ class igGenerator extends Common
 			}
 			else
 			{
+				$this->generateClientId();
+				$this->generateCsrfToken();
+
+				$this->headers [] = 'X-CSRFToken: ' . $this->csrftoken;
+				$this->headers [] = 'Cookie: ig_cb=1; mid=' . $this->mid . '; csrftoken=' . $this->csrftoken . '; ig_did=22CCC17C-43CD-4F30-BF06-40126A80EF94; rur=FTW';
+
 				self::construct([
 					CURLOPT_USERAGENT  => $this->user_agent,
 					CURLOPT_HTTPHEADER => $this->headers
