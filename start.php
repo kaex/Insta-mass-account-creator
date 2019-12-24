@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 DEFINE('ROOTDIR', __DIR__);
 
 require ROOTDIR . '/src/autoloader.php';

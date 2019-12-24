@@ -271,7 +271,9 @@ class igGenerator extends Common
 			}
 		}
 
-		unset($this->headers[14], $this->headers[15]);
+        $X_CSRFToken = array_search('X-CSRFToken: ' . $this->csrftoken, $this->headers, true);
+        $Cookie = array_search('Cookie: ig_cb=1; mid=' . $this->mid . '; csrftoken=' . $this->csrftoken . '; ig_did=22CCC17C-43CD-4F30-BF06-40126A80EF94; rur=FTW', $this->headers, true);
+        unset($this->headers[$X_CSRFToken], $this->headers[$Cookie]);
 
 		return true;
 	}
