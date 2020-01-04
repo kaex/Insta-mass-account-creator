@@ -149,7 +149,7 @@ class igGenerator extends Common
 			if ($this->proxy_file)
 			{
 				$f_contents = file(ROOTDIR . '/' . $this->proxy_file);
-				$line       = $f_contents[random_int(0, count($f_contents) - 1)];
+				$line       = trim($f_contents[random_int(0, count($f_contents) - 1)]);
 
 				if ($line)
 				{
