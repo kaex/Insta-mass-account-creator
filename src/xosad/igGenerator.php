@@ -6,30 +6,31 @@ use Exception;
 
 class igGenerator extends Common
 {
-	public $headers    = [
-		'Host: www.instagram.com',
-		'Accept: */*',
-		'Accept-Language: en-US,en;q=0.5',
-		'Accept-Encoding: gzip, deflate, br',
-		'X-Instagram-AJAX: 62d4dd0faf8e-hot',
-		'X-IG-App-ID: 936619743392459',
-		'X-IG-WWW-Claim: 0',
-		'Content-Type: application/x-www-form-urlencoded',
-		'X-Requested-With: XMLHttpRequest',
-		'Origin: https://www.instagram.com',
-		'Connection: keep-alive',
-		'Referer: https://www.instagram.com/',
-		'Pragma: no-cache',
-		'Cache-Control: no-cache',
-	];
+    public $headers = [
+        'accept: */*',
+        'accept-encoding: gzip, deflate, br',
+        'accept-language: en-GB,en-US;q=0.9,en;q=0.8',
+        'cache-control: no-cache',
+        'content-type: application/x-www-form-urlencoded',
+        'origin: https://www.instagram.com',
+        'pragma: no-cache',
+        'referer: https://www.instagram.com/',
+        'sec-fetch-mode: cors',
+        'sec-fetch-site: same-origin',
+        'x-ig-app-id: 936619743392459',
+        'x-ig-www-claim: 0',
+        'x-instagram-ajax: 61ee74a3c9f7',
+        'x-requested-with: XMLHttpRequest'
+    ];
 	public $csrftoken;
+	public $ig_did;
 	public $mid;
 	public $limit      = 1;
 	public $name;
 	public $email;
 	public $username;
 	public $proxy_file;
-	public $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:69.0) Gecko/20100101 Firefox/69.0';
+	public $user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36';
 
 	/**
 	 * igGenerator constructor.
@@ -107,6 +108,7 @@ class igGenerator extends Common
 		$json = json_decode($result, true);
 
 		$this->csrftoken = $json['config']['csrf_token'];
+		$this->ig_did    = $json['device_id'];
 
 		return true;
 	}
@@ -157,7 +159,7 @@ class igGenerator extends Common
 					$this->generateCsrfToken($line);
 
 					$this->headers [] = 'X-CSRFToken: ' . $this->csrftoken;
-					$this->headers [] = 'Cookie: ig_cb=1; mid=' . $this->mid . '; csrftoken=' . $this->csrftoken . '; ig_did=22CCC17C-43CD-4F30-BF06-40126A80EF94; rur=FTW';
+					$this->headers [] = 'Cookie: ig_cb=1; mid=' . $this->mid . '; csrftoken=' . $this->csrftoken . '; ig_did='. $this->ig_did .'; rur=FRC';
 
 					self::construct([
 						CURLOPT_USERAGENT      => $this->user_agent,
@@ -174,7 +176,7 @@ class igGenerator extends Common
 				$this->generateCsrfToken();
 
 				$this->headers [] = 'X-CSRFToken: ' . $this->csrftoken;
-				$this->headers [] = 'Cookie: ig_cb=1; mid=' . $this->mid . '; csrftoken=' . $this->csrftoken . '; ig_did=22CCC17C-43CD-4F30-BF06-40126A80EF94; rur=FTW';
+				$this->headers [] = 'Cookie: ig_cb=1; mid=' . $this->mid . '; csrftoken=' . $this->csrftoken . '; ig_did='. $this->ig_did .'; rur=FRC';
 
 				self::construct([
 					CURLOPT_USERAGENT  => $this->user_agent,
