@@ -1,7 +1,13 @@
-## This project is no longer being maintained on Open Source 😞
+### This project is no longer being maintained on Open Source 😞
 
-# We have a `PRIVATE` working Instagram Mass Account Creator with SMS verification & random Profile Picture + random BIO
+### We have a `PRIVATE` working Instagram Mass Account Creator with:
+- SMS verification
+- Random Profile Picture
+- Random Biography
+
 ## contact@baransel.dev for the private generator!!
+
+---
 
 # Insta Mass Account Creator
 ![Version](https://img.shields.io/badge/version-0.1-brightgreen.svg?style=flat-square)
