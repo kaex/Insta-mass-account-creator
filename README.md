@@ -5,7 +5,7 @@
 - Random Profile Picture
 - Random Biography
 
-## contact@baransel.dev for the private generator!!
+## root@baransel.dev for the private generator!!
 
 ---
 
