@@ -68,3 +68,7 @@ Write the usernames you want the bot to folllow and hit enter.
 - Fork this repo.
 - Add new features.
 - Create a new pull request for this branch.
+
+---
+
+> **Disclaimer**<a name="disclaimer" />: Please Note that this is a research project. I am by no means responsible for any usage of this tool. Use on your own behalf. I'm also not responsible if your accounts get banned due to extensive use of this tool.
