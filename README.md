@@ -2,6 +2,7 @@
 
 ### We have a `PRIVATE WORKING` Instagram Mass Account Creator with:
 - SMS verification
+- Email verification
 - Random Profile Picture
 - Random Biography
 
