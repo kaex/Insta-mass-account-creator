@@ -1,12 +1,6 @@
 ### This project is no longer being maintained on Open Source 😞
 
-### We have a `PRIVATE WORKING` Instagram Mass Account Creator with:
-- SMS verification
-- Email verification
-- Random Profile Picture
-- Random Biography
-
-## root@baransel.dev for the private generator!!
+### Email me if you need any help regarding the script. (Email is on my github profile)
 
 ---
 
