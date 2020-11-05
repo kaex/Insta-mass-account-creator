@@ -1,7 +1,4 @@
 ### This project is no longer being maintained on Open Source 😞
-
-### Email me if you need any help regarding the script. (Email is on my github profile)
-
 ---
 
 # Insta Mass Account Creator
