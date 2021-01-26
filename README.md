@@ -1,6 +1,4 @@
-### This project is no longer being maintained on Open Source 😞
-
-### `PRIVATE WORKING` Instagram Mass Account Creator. Contact me from my profile.
+### This project is no longer being maintained 😞
 ---
 
 # Insta Mass Account Creator
