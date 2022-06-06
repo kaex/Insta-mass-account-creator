@@ -1,4 +1,4 @@
-### This project is no longer being maintained 😞
+### [Sponsor me](https://github.com/sponsors/kaex) `🦋 Butterfly Tier or above` on GitHub if you need any help regarding this tool.
 ---
 
 # Insta Mass Account Creator
