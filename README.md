@@ -1,6 +1,3 @@
-### [Sponsor me](https://github.com/sponsors/kaex) `🦋 Butterfly Tier or above` on GitHub if you need any help regarding this tool.
----
-
 # Insta Mass Account Creator
 ![Version](https://img.shields.io/badge/version-0.1-brightgreen.svg?style=flat-square)
 ![Version](https://img.shields.io/badge/release-stable-green.svg?style=flat-square)
